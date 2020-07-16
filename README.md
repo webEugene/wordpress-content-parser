@@ -5,23 +5,23 @@ And save it to **`storage`** folder in **.csv** format.
 
 ### Files
 
--   `parse.js` - contains code that checks what module to start.
+- `parse.js` - contains code that checks what module to start.
 
--   `sitemap-urls.json` - here is saving pages from **sitemap.xml**
+- `sitemap-urls.json` - here is saving pages from **sitemap.xml**
 
 ### Modules
 
--   `modules/sitemapUrlsParse.js` - module gets **https://test.com/sitemap.xml** link and extract
+- `modules/sitemapUrlsParse.js` - module gets **https://test.com/sitemap.xml** link and extract
 
 urls list and save them to `sitemap-urls.json`.
 
--   `modules/parseData.js` - module go through the loop and get from each link from
+- `modules/parseData.js` - module go through the loop and get from each link from
 
 `sitemap-urls.json` and parse metadata, content, h1 heading and alt images from content.
 
 After save data to **`storage`** folder.
 
--   `modules/parseDataTest.js` - the same as `parseData.js`. Using for testing.
+- `modules/parseDataTest.js` - the same as `parseData.js`. Using for testing.
 
 ## How to use
 
