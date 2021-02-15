@@ -15,7 +15,7 @@ const getSiteCriteria = (site) => {
         returnFilename = files.filter( item => (item === `${hostName}.json`) ? `${hostName}.json` : '' );
         if('undefined' !== returnFilename[0]){
             fs.readFile(`${criteriaDir}/${returnFilename[0]}`, 'utf8', (err, data) => {
-                if(err) return new Error('Can\'t read file!');
+                if(err) throw new Error('Can\'t read file!');
                 jsonReturn.push(JSON.parse(data));
             });
         }

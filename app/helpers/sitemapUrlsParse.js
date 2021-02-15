@@ -1,4 +1,3 @@
-const pathJsonFile = './app/sitemap-urls.json';
 const sitemaps = require('sitemap-stream-parser');
 const storeUrls = require('./storeUrls');
 const generatorCriteria = require('./criteriaGenerator');
@@ -14,13 +13,13 @@ const getUrls = (url) => {
     },
     (err, sitemaps) => {
       try {
-        if (!allUrls.length) throw new Error(`Array is empty or url is wrong! Check it => ${sitemaps}`);
-        storeUrls(allUrls, pathJsonFile);
+        if (!allUrls.length || err) throw new Error(`Array is empty or url is wrong! Check it => ${sitemaps}`);
+        storeUrls(allUrls);
       } catch(err) {
         console.log('*'.repeat(100));
         console.error(`${err.name}: ${err.message}`);
         console.log('*'.repeat(100));
-      } 
+      }
     },
   );
 };

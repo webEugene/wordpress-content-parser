@@ -1,6 +1,13 @@
 const { URL } = require('url');
 const fs = require('fs');
 
+/**
+ * Regular expression helps to extract only hostname below in the script.
+ *
+ * Ex: tester.test.com will be 'tester' or builder.com will be 'builder'
+ *
+ * @type {RegExp}
+ */
 const regex = new RegExp('^([^.]+)');
 
 const defaultScrapingCriteria = {
@@ -31,8 +38,8 @@ const defaultScrapingCriteria = {
 
 const criteriaGenerator = (data) => {
   if (!data) throw new Error(`Url was not received!`);
-  const parseDomain = new URL(data).host;
-  const hostName = parseDomain.match(regex)[0];
+  const { host } = new URL(data);
+  const hostName = host.match(regex)[0];
 
   fs.writeFile(`./app/criteria/${hostName}.json`, JSON.stringify(defaultScrapingCriteria, null, 1), (err) => {
     if (err) throw new Error(`${err.message}`);
