@@ -2,6 +2,9 @@
 /node_modules
 .vscode/*
 
+/app/helpers/saved.js
+/app/helpers/parseDataTest.js
+
 # misc
 .DS_Store
 .env.local

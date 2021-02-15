@@ -1,44 +1,58 @@
-# parserWPData - Wordress data parser
+# Wordpress Content Parser
 
-**parserWPData** can parse metadata, content, h1 heading and alt images from content.
-And save it to **`storage`** folder in **.csv** format.
-
-### Files
-
-- `parse.js` - contains code that checks what module to start.
-
-- `sitemap-urls.json` - here is saving pages from **sitemap.xml**
-
-### Modules
-
-- `modules/sitemapUrlsParse.js` - module gets **https://test.com/sitemap.xml** link and extract
-
-urls list and save them to `sitemap-urls.json`.
-
-- `modules/parseData.js` - module go through the loop and get from each link from
-
-`sitemap-urls.json` and parse metadata, content, h1 heading and alt images from content.
-
-After save data to **`storage`** folder.
-
-- `modules/parseDataTest.js` - the same as `parseData.js`. Using for testing.
+**Wordpress Content Parser** is written on **Node.js** and can parse metadata, content, h1 heading using terminal.<br>
+After parsing received data is saving to **`storage`** folder. Format of file is **`.csv`**.<br>
+The name of the file will consist of **_date + day in unix timastamp + domain name + file_** extension.
+Example: **`26.01.2021_1611698146089_test.com.csv`**.<br>
 
 ## How to use
 
 #### Download from github and run:
 
-`$ npm install`
+```sh
+$ npm install
+```
+#### To parse links from **https://test.com/sitemap_index.xml/** run in terminal:
 
-#### To parse links from **https://test.com/sitemap.xml** run:
+`$ npm run gs https://test.com/sitemap_index.xml`
 
-`$ npm run gs --xml="https://test.com/sitemap.xml"`
+When command will be finished you can find all urls in **`app/sitemap-urls.json`**
+And in **`app/criteria`** you will find generated **`.json`** file, 
+where will be written all params by default.<br>
+Example:
+```sh 
+"page": {
+    "h1": "h1.heading-class",
+    "content": [
+        "div.content-bl"
+    ]
+},
+```
+Where:
+**`"page"`** is type of **_page_** <br>
+**`"h1"`** is H1 with value class **_h1.heading-class_**<br>
+**`"content"`** is content with value class **_"div.content-bl"_**<br>
+**`"content"`** can get a list classes of different text's blocks on one page.
 
-**--xml=""** - gets params as url to sitemap page.
+```sh 
+"content": [
+    "div.content-bl-one",
+    "div.content-bl-two"
+]
+```
+####See:
 
-#### Start parsing content use next command:
+| Plugin | GitHub |
+| ------ | ------ |
+| Cheerio | [https://github.com/cheeriojs/cheerio] |
 
-`$ npm run parse`
+#### Before parsing data:
 
-When parsing has finished, in the **`storage`** folder you will find **.csv** file with all data.
+Before parsing data, you need in created json file (**`app/criteria/domain_name.json`**) change **CSS** selectors if it needs. 
+Parser needs this params to get correct data in HTML document.
 
-The name of the file will consist of **_date + domain name + file_** extension.
+#### To start parsing data run in terminal:
+```sh
+$ npm run parse
+```
+When parsing will be finished, in the **`storage`** folder you will find **`.csv`** file with all parsed data.
