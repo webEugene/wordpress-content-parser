@@ -9,7 +9,7 @@ const formattingData = (data, criteria, link) => {
 
   if (bodyClass === 'undefined') throw new Error(`Parsing page ${link} has been missed! Status: 404`);
 
-  const currentPage = typePagesList.filter((item) => bodyClass.split(' ').includes(item)).join(', ');
+  const currentPage = typePagesList.find((item) => bodyClass.split(" ").includes(item));
   let titleTmp = $(criteria[0].title).html();
   let descriptionTmp = $(criteria[0].description).attr('content');
   let h1Title = $(criteria[0][currentPage].h1).html().trim();
