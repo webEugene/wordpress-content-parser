@@ -1,6 +1,6 @@
 const cheerio = require('cheerio');
-const typePagesList = ['home', 'single', 'page', 'archive'];
-
+const findCurrentPage = require('../helpers/findCurrentPage');
+const altsImagesExtractor = require('./altsImageExtractor');
 const formattingData = (data, criteria, link) => {
   const $ = cheerio.load(data, {
     decodeEntities: false,
@@ -9,15 +9,15 @@ const formattingData = (data, criteria, link) => {
 
   if (bodyClass === 'undefined') throw new Error(`Parsing page ${link} has been missed! Status: 404`);
 
-  const currentPage = typePagesList.find((item) => bodyClass.split(" ").includes(item));
+  const currentPage = findCurrentPage(bodyClass);
+
   let titleTmp = $(criteria[0].title).html();
   let descriptionTmp = $(criteria[0].description).attr('content');
-  let h1Title = $(criteria[0][currentPage].h1).html().trim();
+  let h1Title = $(criteria[0][currentPage].h1).html() ?? '';
   let content = criteria[0][currentPage].content.map((contentClass) => {
     return $(contentClass).html()
       ? $(contentClass)
         .html()
-        .trim()
         .replace(/\s\s+/g, '')
       : '';
   }).join(' ');
@@ -27,8 +27,10 @@ const formattingData = (data, criteria, link) => {
     description: descriptionTmp || 'Description is missing!',
     h1Title: h1Title || 'h1 title is missing!',
     content: content || 'Content is missing!',
+    alts: altsImagesExtractor(content) || '',
   };
 
+  console.log(altsImagesExtractor(content));
   return {
     'Date time': new Date().toLocaleString(),
     'Page Type': currentPage,
@@ -36,8 +38,9 @@ const formattingData = (data, criteria, link) => {
     'Meta Title': cheerioRules.title,
     'Meta Description': cheerioRules.description,
     'Main Title h1': cheerioRules.h1Title,
-    'Main content': `<div class='content-wrapper'>${cheerioRules.content}</div>`,
-  }
+    'Main content': `<div class=\"parsed-content\">${cheerioRules.content}</div>`,
+    'Content Images Alt': `${cheerioRules.alts}`,
+  };
 };
 
 module.exports = formattingData;

@@ -1,5 +1,5 @@
-const sitemapParse = require('./helpers/sitemapUrlsParse');
-const startParsingTest = require('./helpers/parseData');
+const sitemapParse = require('./modules/sitemapUrlsParse');
+const startParsingTest = require('./modules/parseData');
 
 const init = (url, action) => {
     switch (action) {
