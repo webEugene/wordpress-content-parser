@@ -1,9 +1,9 @@
 const axios = require('axios');
 const dataUrls = require('../sitemap-urls.json');
 const saveToStorageModule = require('./saveToStorage');
-const gatherData = [];
 const getSiteCriteria = require('./getSiteCriteria');
 const formattingData = require('./formattingData');
+const gatherData = [];
 
 const startParsing = () => {
 
