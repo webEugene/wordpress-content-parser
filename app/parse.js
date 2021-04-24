@@ -1,5 +1,6 @@
 const sitemapParse = require('./modules/sitemapUrlsParse');
-const startParsingTest = require('./modules/parseData');
+const startParsing = require('./modules/parseData');
+const startClean = require('./modules/cleanFolders');
 
 const init = (url, action) => {
     switch (action) {
@@ -7,7 +8,10 @@ const init = (url, action) => {
         sitemapParse.url(url);
         break;
       case 'parse':
-        startParsingTest();
+        startParsing();
+        break;
+      case 'clean':
+        startClean();
         break;
   }
 }

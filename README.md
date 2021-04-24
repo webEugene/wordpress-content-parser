@@ -40,7 +40,7 @@ Where:
     "div.content-bl-two"
 ]
 ```
-####See:
+#### See:
 
 | Plugin | GitHub |
 | ------ | ------ |
@@ -56,3 +56,9 @@ Parser needs this params to get correct data in HTML document.
 $ npm run parse
 ```
 When parsing will be finished, in the **`storage`** folder you will find **`.csv`** file with all parsed data.
+
+#### To clean parsing data run in terminal:
+```sh
+$ npm run clean
+```
+This command clean **`storage`** and **`criteria`** folders from all files and delete urls from **`app/sitemap-urls.json`**.

@@ -21,6 +21,4 @@ package-lock.json*
 out
 
 /app/modules/parseDataTest.js
-/app/criteria/*.json
-/app/storage/*.csv
 
