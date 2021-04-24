@@ -30,7 +30,6 @@ const formattingData = (data, criteria, link) => {
     alts: altsImagesExtractor(content) || '',
   };
 
-  console.log(altsImagesExtractor(content));
   return {
     'Date time': new Date().toLocaleString(),
     'Page Type': currentPage,

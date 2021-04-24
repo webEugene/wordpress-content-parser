@@ -1,11 +1,12 @@
 {
   "name": "sitemap-urls",
-  "version": "1.0.0",
+  "version": "1.2.1",
   "description": "",
   "main": "index.js",
   "scripts": {
     "gs": "node index",
     "parse": "node index",
+    "clean": "node index",
     "test": "node index"
   },
   "author": "",
