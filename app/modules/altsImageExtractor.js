@@ -1,5 +1,12 @@
+/**
+ * Extract alts from images tag
+ *
+ * @param content
+ *
+ * @returns {string|*[]}
+ */
 const altsImagesExtractor = (content) => {
-  if (!content) return [];
+  if (!content) return 'Alts are missing!';
 
   let arrayImagesAlts = [];
   const regFindImgAlt = /<img.*?alt="(.*?)".*?>/g;
@@ -9,7 +16,7 @@ const altsImagesExtractor = (content) => {
       arrayImagesAlts.push(match[1]);
     }
   }
-  return arrayImagesAlts.join("; ");
-}
+  return arrayImagesAlts.join('; ');
+};
 
 module.exports = altsImagesExtractor;

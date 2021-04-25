@@ -1,10 +1,13 @@
 const axios = require('axios');
-const dataUrls = require('../sitemap-urls.json');
+const dataUrls = require('../static/sitemapUrls.json');
 const saveToStorageModule = require('./saveToStorage');
 const getSiteCriteria = require('./getSiteCriteria');
 const formattingData = require('./formattingData');
 const gatherData = [];
 
+/**
+ *  Start parsing data
+ */
 const startParsing = () => {
 
   let interval = setInterval(
