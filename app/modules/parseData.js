@@ -1,12 +1,15 @@
-const dataUrls = require('../sitemap-urls.json');
+const dataUrls = require('../static/sitemapUrls.json');
 const iterateParsing = require('./parsingPageIterator');
 
+/**
+ * Parsing data main method
+ */
 const parsing = () => {
   if(!!dataUrls.length){
     iterateParsing();
   }else{
     console.log('*'.repeat(50));
-    console.log('sitemap-urls.json is empty!');
+    console.log('sitemapUrls.json is empty!');
     console.log('*'.repeat(50));
   }
 }

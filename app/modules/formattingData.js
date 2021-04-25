@@ -1,6 +1,16 @@
 const cheerio = require('cheerio');
 const findCurrentPage = require('../helpers/findCurrentPage');
 const altsImagesExtractor = require('./altsImageExtractor');
+
+/**
+ * Formatting parsed data and prepare to save
+ *
+ * @param data
+ * @param criteria
+ * @param link
+ *
+ * @returns {{'Page Type': *, 'Meta Description': (*|jQuery|string), 'Main content': string, 'Date time': string, 'Parsing Link', 'Meta Title': (*|jQuery|string), 'Main Title h1': (jQuery|*|string), 'Content Images Alt': string}}
+ */
 const formattingData = (data, criteria, link) => {
   const $ = cheerio.load(data, {
     decodeEntities: false,
@@ -25,9 +35,9 @@ const formattingData = (data, criteria, link) => {
   const cheerioRules = {
     title: titleTmp || 'Title is missing!',
     description: descriptionTmp || 'Description is missing!',
-    h1Title: h1Title || 'h1 title is missing!',
+    h1Title: h1Title.trim() || 'h1 title is missing!',
     content: content || 'Content is missing!',
-    alts: altsImagesExtractor(content) || '',
+    alts: altsImagesExtractor(content) || 'Alts are missing!',
   };
 
   return {
@@ -38,7 +48,7 @@ const formattingData = (data, criteria, link) => {
     'Meta Description': cheerioRules.description,
     'Main Title h1': cheerioRules.h1Title,
     'Main content': `<div class=\"parsed-content\">${cheerioRules.content}</div>`,
-    'Content Images Alt': `${cheerioRules.alts}`,
+    'Content Images Alt': cheerioRules.alts,
   };
 };
 

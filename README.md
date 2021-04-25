@@ -13,11 +13,12 @@ Example: **`26.01.2021_1611698146089_test.com.csv`**.<br>
 $ npm install
 ```
 #### To parse links from **https://test.com/sitemap_index.xml/** run in terminal:
+#### P.S.: sitemap maybe as **`sitemap_index.xml, sitemap.xml, etc`**. Choose your correct sitemap from your site.
 
 `$ npm run gs https://test.com/sitemap_index.xml`
 
-When command will be finished you can find all urls in **`app/sitemap-urls.json`**
-And in **`app/criteria`** you will find generated **`.json`** file, 
+When command will be finished you can find all urls in **`app/static/sitemapUrls.json`**
+And in **`app/static/criteria`** you will find generated **`.json`** file, 
 where will be written all params by default.<br>
 Example:
 ```sh 
@@ -48,7 +49,7 @@ Where:
 
 #### Before parsing data:
 
-Before parsing data, you need in created json file (**`app/criteria/domain_name.json`**) change **CSS** selectors if it needs. 
+Before parsing data, you need in created json file (**`app/static/criteria/domain_name.json`**) change **CSS** selectors if it needs. 
 Parser needs this params to get correct data in HTML document.
 
 #### To start parsing data run in terminal:
@@ -61,4 +62,4 @@ When parsing will be finished, in the **`storage`** folder you will find **`.csv
 ```sh
 $ npm run clean
 ```
-This command clean **`storage`** and **`criteria`** folders from all files and delete urls from **`app/sitemap-urls.json`**.
+This command clean **`storage`** and **`criteria`** folders from all files and delete urls from **`app/static/sitemapUrls.json`**.

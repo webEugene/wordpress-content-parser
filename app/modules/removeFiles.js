@@ -1,5 +1,12 @@
 const { existsSync, readdirSync, statSync, unlinkSync } = require('fs');
 
+/**
+ * Remove files from folder
+ *
+ * @param folder
+ *
+ * @returns {boolean}
+ */
 const removeDirFiles = (folder) => {
   if (!existsSync(folder)) {
     console.log(`Directory path ${folder} not found.`);
@@ -19,6 +26,7 @@ const removeDirFiles = (folder) => {
       unlinkSync(`${folder}/${filename}`);
     }
   });
+
   console.log('*'.repeat(50));
   console.log(`cleaning folder ${folder} has been finished!`);
   console.log('*'.repeat(50));
